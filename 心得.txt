@@ -1,0 +1,78 @@
+技术是无法脱离业务的，只有当业务需要时，才会选用相关的技术。
+自己做的永远是Demo，和真正的企业级项目差距是很明显的。
+
+Docker镜像(程序模板)—>Docker容器(程序实例)
+Docker注册中心(类比maven仓库)—>Docker仓库—>镜像标签
+Docker注册中心默认为官方Docker Hub,可使用Docker命令下载并使用
+Docker search搜索，pull下载，images列出，rmi删除，
+            save(把镜像保存到文件)：docker save hello-world > hello.tar
+            load(从文件中加载镜像)：docker load < hello.tar 
+            build(通过Dockerfile构建镜像)：docker build 
+Docker构建在现有os的虚拟机，借助linux核心，Base镜像然后进行堆砌镜像
+Docker分层文件系统
+打镜像-上传-天宫下载-构建
+Dockerfile
+from 基本镜像          --
+Expose 暴露端口
+Volume /tmp  需要持久化的数据，挂载到目录，天宫卷。而不是虚机的文件  //指定存储卷
+arg 定义参数 jar_file=''       //指定变量
+copy ${jar_file} app.jar //虚拟机的目录
+ENV         //指定环境变量
+entryPoint []  //镜像启动时执行的命令
+通过参数文件对应多个
+
+把不需要更新的程序单独封装为一个镜像，每次只构建修改的镜像，无需考虑机器的差异
+
+docker run -d(后台) --name 容器名 -v 虚机挂载卷：外面目录(日志输出，sql持久化) -p 8080 : 7070(内外端口映射) 镜像名 
+
+上传私服
+怎么打tag
+docker tag 容器名称 私服路劲/别名：tag
+docker push 
+
+一个镜像 可放多个jar包
+
+服务调度+容器编排(马拉松)
+一个功能，一个容器
+
+docker history 镜像分层
+
+前端f5  后端Nginx
+docker exec -it  镜像名称 /bin/sh   直接修改镜像
+
+//在docker中安装jenkins
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_data:/var/jenkins_home jenkinsci/blueocean
+
+
+
+
+  "dev": "webpack-dev-server",
+
+
+
+
+
+
+
+
+
+
+SpringCloud和Dubbo区别。
+什么是CAP,SpringCloud保证了CP还是AP??
+接下来我们说一下CAP的具体的三条定律吧
+CAP 原则指的是，这三个要素最多只能同时实现两点，不可能三者兼顾。
+C: 指的是，在分布式系统中所有数据备份在同一时刻是否是同样的值
+A: 某节点宕机，集群整体是否在规定时间内进行响应
+P: 指的是，某个节点宕机后，其他节点是否还能工作
+
+
+
+而由于当前的网络硬件肯定会出现延迟丢包等问题，所以分区容忍性是我们必须需要实现的。所以我们只能在一致性和可用性之间进行权衡
+loadNum后面三个数字：1分钟负载 5分钟负载  15分钟负载
+vue是怎么传递数据的。
+kafka是怎么个流程。
+分布式事务原理。
+红黑树和B++树。索引为何使用B++树。
+SpringCloud怎么动态更新配置文件的。。。·
+数据库分库分表。。。
+Git相关命令
